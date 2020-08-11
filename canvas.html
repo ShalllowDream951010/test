@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="480" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvasEle=document.getElementById('canvas')
+        let ctx=canvasEle.getContext('2d')
+        let datas=[100,200,400,250,300]
+        let w=canvasEle.width
+        let h=canvasEle.height
+        let width=50
+        let space=(w-width*datas.length)/(datas.length-1)
+        ctx.textAlign='center'
+        ctx.textBaseline='bottom'
+        ctx.font='bold 20px verdana'
+        for (let i = 0; i < datas.length; i++) {
+            ctx.fillStyle='#000'
+            ctx.fillText(datas[i],(width+space)*i+width/2,h-datas[i])
+            
+            ctx.fillRect((width+space)*i,h-datas[i],width,datas[i])
+            
+        }
+        
+    </script>
+</body>
+</html>

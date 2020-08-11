@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="480" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvasEle=document.getElementById('canvas')
+        let ctx=canvasEle.getContext('2d')
+        let w=canvasEle.width
+        let h=canvasEle.height
+        ctx.moveTo(100,100);
+        ctx.lineTo(100,h-100);
+        ctx.lineTo(w-100,h-100);
+        ctx.stroke();
+        let datas = [
+            {label: '青龙志',value: 180},
+            {label: '白虎志',value: 120}, 
+            {label: '朱雀志',value: 100},
+            {label: '玄武志',value: 140}];
+        let colors = ['red', 'pink', 'yellow', 'green', 'blue', 'purple']
+        let width=50
+        let space=(w-200-width*datas.length)/(datas.length-1)
+        ctx.textAlign='center'
+        ctx.textBaseline='bottom'
+        ctx.font='bold 20px verdana'
+        for (let i = 0; i < datas.length; i++) {
+            ctx.fillStyle=colors[i]
+            ctx.fillRect((width+space)*i+100,h-datas[i].value-100,width,datas[i].value)
+            ctx.fillStyle='#000'
+            ctx.fillText(datas[i].value,(width+space)*i+width/2+100,h-datas[i].value-100)
+            
+            ctx.fillText(datas[i].label,(width+space)*i+width/2+100,h-70)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" style="border: 1px solid black;"></canvas>
+    <script>
+        let canvasEle=document.getElementById('canvas')
+        let ctx=canvasEle.getContext('2d')
+        canvasEle.width="800"
+        canvasEle.height="480"
+        let colors = ['red', 'pink', 'yellow', 'green', 'blue', 'purple']
+        let x = Math.floor(Math.random()*canvasEle.width-100)+50
+        let xMove=1
+        let y = Math.floor(Math.random()*canvasEle.height-100)+50
+        let yMove=2
+        let time
+       function animation(){
+            ctx.clearRect(0,0,canvasEle.width,canvasEle.height)
+            ctx.beginPath()
+            ctx.arc(x,y,50,0,Math.PI*2)
+            ctx.fill()
+            x+=xMove
+            y+=yMove
+            if (x>canvas.width-50) {
+                xMove=-1
+                ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)]
+
+            }else if(x<50){
+                xMove=1
+                ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)]
+            }
+            y+=yMove
+            if (y>canvas.height-50) {
+                yMove=-2
+                ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)]
+            }else if(y<50){
+                yMove=2
+                ctx.fillStyle=colors[Math.floor(Math.random()*colors.length)]
+            }
+            time=window.requestAnimationFrame(animation)
+        }
+        
+        let flag=false
+        function play(){
+            if (flag==false){
+                animation()
+                flag=true
+            } 
+        }
+        function pause() {
+            if (flag){
+                window.cancelAnimationFrame(time)
+                flag=false
+            }
+        }
+    </script>
+    <p><button onclick="play()">播放</button><button onclick="pause()">暂停</button></p>
+</body>
+</html>
